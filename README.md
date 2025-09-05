@@ -147,9 +147,14 @@ sudo systemctl status twinspires-scraper
    npm install
    ```
 
-2. **"Access Denied" from TwinSpires**
+2. **"Access Denied" from TwinSpires (IP Blocking)**
    - ✅ This means VPS is working correctly!
-   - ❌ If still getting blocked, try different VPS provider
+   - ❌ IP is blocked by Akamai CDN
+   - **Solutions:**
+     - Use a residential proxy service (recommended)
+     - Try a different VPS provider
+     - Use a VPN service
+     - Contact VPS provider for IP change
 
 3. **"SUPABASE_SERVICE_KEY missing"**
    - Check `.env` file has correct service key
@@ -164,6 +169,21 @@ sudo systemctl status twinspires-scraper
    docker-compose ps
    docker-compose restart
    ```
+
+### **IP Blocking Solutions:**
+
+1. **Residential Proxy Service** (Recommended)
+   - Services like Bright Data, Smartproxy, or Oxylabs
+   - Add proxy configuration to `.env` file
+   - More expensive but most reliable
+
+2. **Different VPS Provider**
+   - Try providers with residential IPs
+   - Some providers offer IP rotation
+
+3. **VPN Service**
+   - Use a VPN with residential IPs
+   - Configure VPN on VPS before running scraper
 
 ## 📊 **Monitoring**
 

@@ -58,15 +58,21 @@ class TwinSpiresScraper {
     try {
       console.log('🖥️  Launching local Puppeteer for VPS...');
       
-      // Simple VPS browser configuration - no Railway complexity
+      // VPS browser configuration with Chromium
       const launchOptions = {
+        executablePath: '/usr/bin/chromium-browser',
         headless: true,
         args: [
           '--no-sandbox',
           '--disable-setuid-sandbox',
           '--disable-dev-shm-usage',
+          '--disable-accelerated-2d-canvas',
+          '--no-first-run',
+          '--no-zygote',
+          '--disable-gpu',
           '--disable-web-security',
-          '--disable-features=VizDisplayCompositor'
+          '--disable-features=VizDisplayCompositor',
+          '--user-agent=Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'
         ],
         defaultViewport: { width: 1280, height: 720 },
         ignoreHTTPSErrors: true,
@@ -235,6 +241,18 @@ class TwinSpiresScraper {
       if (bodyHTML.includes('blocked') || bodyHTML.includes('captcha') || bodyHTML.includes('Access Denied')) {
         console.error('🚫 Page appears to be blocked or has captcha');
         console.error('📝 Sample content:', bodyHTML.substring(0, 500));
+        
+        // Try to get more info about the blocking
+        const pageTitle = await this.page.title();
+        if (pageTitle.includes('Access Denied')) {
+          console.error('🚫 IP Address is blocked by Akamai CDN');
+          console.error('💡 Solutions:');
+          console.error('   1. Use a residential proxy service');
+          console.error('   2. Try a different VPS provider');
+          console.error('   3. Use a VPN service');
+          console.error('   4. Contact VPS provider for IP change');
+        }
+        
         throw new Error('TwinSpires page blocked or requires captcha');
       }
       
