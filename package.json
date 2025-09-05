@@ -1,0 +1,25 @@
+{
+  "name": "twinspires-vps-scraper",
+  "version": "1.0.0",
+  "description": "TwinSpires scraper for VPS deployment - every 2 minutes during 16:00-02:00",
+  "main": "twinspires-scraper.js",
+  "engines": {
+    "node": ">=18.0.0",
+    "npm": ">=8.0.0"
+  },
+  "scripts": {
+    "start": "node scheduler.js",
+    "test": "node twinspires-scraper.js --test",
+    "manual": "node twinspires-scraper.js"
+  },
+  "dependencies": {
+    "@supabase/supabase-js": "^2.52.1",
+    "dotenv": "^16.3.1",
+    "axios": "^1.6.0",
+    "puppeteer": "^22.0.0",
+    "node-cron": "^3.0.3"
+  },
+  "keywords": ["twinspires", "scraper", "vps", "horseracing"],
+  "author": "OddsVantage",
+  "license": "MIT"
+}

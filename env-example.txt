@@ -1,0 +1,7 @@
+# Supabase Configuration - REQUIRED
+SUPABASE_URL=https://gwvnmzflxttdlhrkejmy.supabase.co
+SUPABASE_SERVICE_KEY=your_service_key_here
+
+# VPS Configuration (Optional)
+NODE_ENV=production
+VPS_LOCATION=your_vps_location
